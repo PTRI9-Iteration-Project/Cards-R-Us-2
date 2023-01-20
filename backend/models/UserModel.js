@@ -7,32 +7,32 @@ const bcrypt = require('bcrypt');
 const userSchema = new Schema({
   email: {
     type: String,
-    require: false,
+    required: false,
     default: null,
   },
   password: {
     type: String,
-    require: false,
+    required: false,
     default: null,
   },
-  username: {
-    type: String,
-    require: true,
-    unique: true,
-  },
+  // username: {
+  //   type: String,
+  //   require: true,
+  //   unique: true,
+  // },
   avatar: {
     type: String,
-    require: false,
+    required: false,
     default: '',
   },
   name: {
     type: String,
-    require: false,
+    required: false,
     default: '',
   },
   gallery: {
     type: Array(String),
-    require: false,
+    required: false,
     default: [],
   },
 });

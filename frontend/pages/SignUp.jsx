@@ -14,6 +14,8 @@ const SignUp = () => {
 
     const info = { email, password};
 
+    console.log(info);
+
     fetch('/api/auth/signup', {
       method: 'POST',
       headers: {
@@ -23,6 +25,7 @@ const SignUp = () => {
     })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       console.log('Successfully created account');
     });
   };
