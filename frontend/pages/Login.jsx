@@ -15,6 +15,8 @@ const Login = () => {
     const password = e.target.querySelector('#password').value;
     const info = { email, password};
 
+    console.log(info)
+
     fetch('/api/auth/login', {
       method: 'POST',
       headers: {

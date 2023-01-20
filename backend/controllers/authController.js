@@ -5,9 +5,11 @@ const authController = {
   async signUp(req, res, next) {
     try {
       const { email, password } = req.body;
+      console.log([email, password]);
       if (!email || !password)
         return new Error('No username or password provided.');
       const newUser = await User.create({ email, password });
+      console.log(newUser);
       const { gallery, _id } = newUser;
       res.locals.user = { email, id: _id, gallery };
       return next();
