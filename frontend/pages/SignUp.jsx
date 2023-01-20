@@ -14,12 +14,12 @@ const SignUp = () => {
 
     const info = { email, password};
 
-    fetch('/api/signup', {
+    fetch('/api/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringfy(info),
+      body: JSON.stringify(info),
     })
     .then((res) => res.json())
     .then((data) => {
