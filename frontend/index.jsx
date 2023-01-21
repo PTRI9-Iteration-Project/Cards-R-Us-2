@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import CreateCard from './pages/CreateCardPage';
 import SignUp from './pages/SignUp';
 import CardViewPage from './pages/CardViewPage';
+import UpLoad from './pages/UpLoad'
 
 // Style import
 import './styles/index.scss';
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/create',
     element: <CreateCard />,
+  },
+  {
+    path: '/upload',
+    element: <UpLoad />,
   },
   {
     path: '/404',

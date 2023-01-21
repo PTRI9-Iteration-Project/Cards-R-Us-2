@@ -160,12 +160,22 @@
       align-items: center;
 
       #color {
-        background: rgba(255, 255, 255, 0.653);
+        position: relative;
+        left: 5px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        width: 68px;
+        height: 68px;
+        border: none;
+        cursor: pointer;
+      }
+      #color::-webkit-color-swatch {
         border-radius: 50%;
-        height: 30%;
-        width: 8%;
-        border: 2px solid rgb(0, 0, 0);
-        padding: 0;
+      }
+      #color::-moz-color-swatch {
+        border-radius: 50%;
       }
 
       #message {

@@ -175,6 +175,44 @@ const GalleryPage = () => {
             {displaySideBar ? (
               <Button
                 onClick={() => {
+                  window.location.href = '/upload';
+                }}
+                variant='soft'>
+                Upload
+              </Button>
+            ) : (
+              <IconButton variant='soft'>
+                <Logout
+                  onClick={() => {
+                    window.location.href = '/upload';
+                  }}
+                />
+              </IconButton>
+            )}
+          </div>
+          <div className='SecondaryControls'>
+            {displaySideBar ? (
+              <Button
+                onClick={() => {
+                  window.location.href = '/create';
+                }}
+                variant='soft'>
+                Create
+              </Button>
+            ) : (
+              <IconButton variant='soft'>
+                <Logout
+                  onClick={() => {
+                    window.location.href = '/create';
+                  }}
+                />
+              </IconButton>
+            )}
+          </div>
+          <div className='SecondaryControls'>
+            {displaySideBar ? (
+              <Button
+                onClick={() => {
                   window.location.href = '/';
                 }}
                 variant='soft'>
