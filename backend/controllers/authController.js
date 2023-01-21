@@ -46,6 +46,7 @@ const authController = {
             gallery: userAccount.gallery,
           };
           res.locals.user = user;
+          console.log('user from authControl', user)
           return next();
         });
       });
