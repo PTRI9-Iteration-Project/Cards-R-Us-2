@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router';
 
 export default function useLoginState() {
   const [loginInformation, setLoginInformation] = useState({
@@ -16,7 +18,8 @@ export default function useLoginState() {
    * userId: string | null,
    * }} user
    */
-  const updateLogin = (user) => {
+
+  const updateLogin = async (user) => {
     const defaultUser = {
       username: null,
       email: null,
@@ -24,6 +27,7 @@ export default function useLoginState() {
       name: null,
       userId: null,
     };
+
     setLoginInformation({
       isLoggedIn: user?.userId !== null,
       user: { ...defaultUser, user, userId: user.id },
@@ -34,5 +38,7 @@ export default function useLoginState() {
     isLoggedIn: loginInformation.isLoggedIn,
     user: loginInformation.user,
     updateLogin,
-  }
+  };
 }
+//user?.userId !== null
+// { ...defaultUser, user, userId: user.id }

@@ -8,14 +8,11 @@ import useLoginState from '../hooks/useLoginHooke';
 const Login = () => {
   const { updateLogin } = useLoginState();
 
-
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.querySelector('#email').value;
     const password = e.target.querySelector('#password').value;
     const info = { email, password};
-
-    console.log(info)
 
     fetch('/api/auth/login', {
       method: 'POST',
@@ -25,12 +22,10 @@ const Login = () => {
       body: JSON.stringify(info),
     })
     .then((res) => res.json())
-    .then((data) => {
-      updateLogin(data);
-    });
+    .then((data) =>
+      updateLogin(data)
+    )
   };
-
-
 
   return (
     <div className='LoginPage'>
