@@ -19,9 +19,7 @@ router.post(
   '/signup',
   authController.signUp,
   sessionController.startSession,
-  (req, res) => {
-    res.status(200).json(res.locals.user);
-  }
+  (req, res) => res.status(200).json(res.locals.user)
 );
 
 router.get('/user', sessionController.isLoggedIn, (req, res) => {

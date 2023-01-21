@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom"
-
+import React from 'react';
+import { useNavigate } from 'react-router';
 
 export default function useLoginState() {
   const [loginInformation, setLoginInformation] = useState({
@@ -12,8 +12,8 @@ export default function useLoginState() {
 
   const statusUpdate = useEffect(() => {
     console.log('updated?', loginInformation);
-    if (loginInformation.isLoggedIn) navigate('/cards')
-  }, [loginInformation])
+    if (loginInformation.isLoggedIn) navigate('/cards');
+  }, [loginInformation]);
 
   /**
    *
@@ -26,7 +26,7 @@ export default function useLoginState() {
    * }} user
    */
   const updateLogin = async (user) => {
-    console.log('user from function', user)
+    console.log('user from function', user);
     // const defaultUser = {
     //   username,
     //   email,
@@ -39,11 +39,11 @@ export default function useLoginState() {
       // isLoggedIn: true,
       // user: { ...defaultUser, user, userId: user.id},
       user: {
-        email: user.email, 
-        userId: user.id
-      }
+        email: user.email,
+        userId: user.id,
+      },
     });
-    console.log('loginInformation after set', loginInformation)
+    console.log('loginInformation after set', loginInformation);
 
     return loginInformation;
   };
@@ -52,6 +52,8 @@ export default function useLoginState() {
     // isLoggedIn: loginInformation.isLoggedIn,
     // user: loginInformation.user,
     updateLogin,
-    statusUpdate
-  }
+    statusUpdate,
+  };
 }
+//user?.userId !== null
+// { ...defaultUser, user, userId: user.id }

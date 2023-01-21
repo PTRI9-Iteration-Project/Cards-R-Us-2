@@ -8,14 +8,11 @@ import useLoginState from '../hooks/useLoginHooke';
 const Login = () => {
   const { updateLogin, statusUpdate } = useLoginState();
 
-
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.querySelector('#email').value;
     const password = e.target.querySelector('#password').value;
     const info = { email, password};
-
-    console.log(info)
 
     fetch('/api/auth/login', {
       method: 'POST',
@@ -39,8 +36,6 @@ const Login = () => {
       console.log('sweet:', loginData)
     })
   };
-
-
 
   return (
     <div className='LoginPage'>
