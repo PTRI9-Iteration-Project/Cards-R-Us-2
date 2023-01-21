@@ -8,6 +8,13 @@ export default function useLoginState() {
     user: null,
   });
 
+  const navigate = useNavigate();
+
+  const statusUpdate = useEffect(() => {
+    console.log('updated?', loginInformation);
+    if (loginInformation.isLoggedIn) navigate('/cards');
+  }, [loginInformation]);
+
   /**
    *
    * @param {{
@@ -18,26 +25,34 @@ export default function useLoginState() {
    * userId: string | null,
    * }} user
    */
-
   const updateLogin = async (user) => {
-    const defaultUser = {
-      username: null,
-      email: null,
-      avatar: null,
-      name: null,
-      userId: null,
-    };
-
+    console.log('user from function', user);
+    // const defaultUser = {
+    //   username,
+    //   email,
+    //   avatar,
+    //   name,
+    //   userId: undefined,
+    // };
     setLoginInformation({
-      isLoggedIn: user?.userId !== null,
-      user: { ...defaultUser, user, userId: user.id },
+      isLoggedIn: user.userId !== null,
+      // isLoggedIn: true,
+      // user: { ...defaultUser, user, userId: user.id},
+      user: {
+        email: user.email,
+        userId: user.id,
+      },
     });
+    console.log('loginInformation after set', loginInformation);
+
+    return loginInformation;
   };
 
   return {
-    isLoggedIn: loginInformation.isLoggedIn,
-    user: loginInformation.user,
+    // isLoggedIn: loginInformation.isLoggedIn,
+    // user: loginInformation.user,
     updateLogin,
+    statusUpdate,
   };
 }
 //user?.userId !== null

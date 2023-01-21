@@ -6,7 +6,7 @@ import Background from '../images/bg.svg';
 import useLoginState from '../hooks/useLoginHooke';
 
 const Login = () => {
-  const { updateLogin } = useLoginState();
+  const { updateLogin, statusUpdate } = useLoginState();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,10 +21,20 @@ const Login = () => {
       },
       body: JSON.stringify(info),
     })
-    .then((res) => res.json())
-    .then((data) =>
-      updateLogin(data)
-    )
+    .then((res) => {
+      return res.json();
+    })
+    .then(async (data) => {
+      console.log('data:', data)
+      // let userData = updateLogin(data);
+      let userData = await updateLogin(data);
+      console.log('userData', userData)
+      return userData;
+    })
+    .then((loginData) => {
+      statusUpdate
+      console.log('sweet:', loginData)
+    })
   };
 
   return (
