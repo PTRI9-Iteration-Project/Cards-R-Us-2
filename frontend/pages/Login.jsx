@@ -25,7 +25,6 @@ const Login = () => {
       return res.json();
     })
     .then(async (data) => {
-      console.log(data)
       if(data.err) {
         const Toast = Swal.mixin({
           toast: true,
