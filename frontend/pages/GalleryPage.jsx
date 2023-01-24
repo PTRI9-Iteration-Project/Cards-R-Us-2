@@ -141,7 +141,7 @@ const GalleryPage = () => {
             src={user?.avatar ?? Placeholder}
           />
           <h2 style={{ display: displaySideBar ? '' : 'none' }}>
-            {user?.username ?? 'Placeholder'}
+            {user?.email.split('@')[0] ?? 'Placeholder'}
           </h2>
           <IconButton
             variant='plain'
@@ -214,6 +214,13 @@ const GalleryPage = () => {
               <Button
                 onClick={() => {
                   window.location.href = '/';
+                  // fetch('locahost:8080/api/auth/logout', {
+                  //     method: 'GET',
+                  //     credentials: 'include'
+                  //   })
+                  //   .then(response => {
+                  //     console.log(response);
+                  //   });
                 }}
                 variant='soft'>
                 Logout
