@@ -25,6 +25,25 @@ const Login = () => {
       return res.json();
     })
     .then(async (data) => {
+      if(data.err) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Incorrect login credentials'
+        })
+        return;
+      }
       console.log('data:', data)
       // let userData = updateLogin(data);
       let userData = await updateLogin(data);
@@ -34,7 +53,7 @@ const Login = () => {
     .then((loginData) => {
       statusUpdate
       console.log('sweet:', loginData)
-    })
+    }).catch(err=> console.log('user not found:', err))
   };
 
   return (

@@ -1,6 +1,7 @@
 const path = require('path');
 require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: process.env.TARGET,
@@ -58,6 +59,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve('./frontend/index.html'),
     }),
+    new Dotenv(),
   ],
 
   output: {

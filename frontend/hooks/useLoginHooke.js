@@ -11,8 +11,9 @@ export default function useLoginState() {
   const navigate = useNavigate();
 
   const statusUpdate = useEffect(() => {
-    console.log('updated?', loginInformation);
-    if (loginInformation.isLoggedIn) navigate('/cards');
+    console.log('updated?', loginInformation.user);
+
+    if (loginInformation.isLoggedIn === true) navigate('/cards');
   }, [loginInformation]);
 
   /**
