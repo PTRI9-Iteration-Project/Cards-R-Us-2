@@ -13,6 +13,11 @@ router.post(
     res.status(200).json(res.locals.user);
   }
 );
+//POST to logout
+router.post('/logout', (req, res) => {
+  res.json('hit');
+  res.clearCookie('SSID');
+});
 
 // '/signup' Endpoint
 router.post(

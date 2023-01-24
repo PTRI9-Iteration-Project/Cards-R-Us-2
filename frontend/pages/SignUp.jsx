@@ -1,10 +1,16 @@
 import React from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 
 import Background from '../images/bg.svg';
 import Logo from '../images/logo.png';
 
 const SignUp = () => {
+
+  const navigate = useNavigate();
+
+  const navToLogin = () => {
+    navigate('/login')
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,10 +61,10 @@ const SignUp = () => {
         </div>
 
         <div className='buttons noSelect'>
-          <button className='button'>
-          <Link className='button' to='/login'>
+          <button type='submit' className='button' onClick={navToLogin}>
+          
             Create Account
-          </Link>
+  
           </button>
         </div>
         <br className='noSelect' />
