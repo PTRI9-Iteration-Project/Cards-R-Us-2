@@ -14,8 +14,10 @@ const openaiController = {
         prompt: userPrompt,
         n: 4,
         size: '1024x1024',
+        response_format: "b64_json",
       });
-      console.log('response object: ', response.data);
+      //response.data = [{b64_json : 'string'}},{},{},{}]
+      // console.log('response object: ', response.data);
       res.locals.image = response.data;
     } catch (error) {
       if (error.response) {
@@ -23,9 +25,9 @@ const openaiController = {
         console.log(error.response.data);
       } else {
         return next({
-          log: 'Express Error hanler caught middleware error at \'/backend/controller/openaiController',
-          message: {err: error.message}
-        })
+          log: "Express Error hanler caught middleware error at '/backend/controller/openaiController",
+          message: { err: error.message },
+        });
       }
     }
     console.log('complete');

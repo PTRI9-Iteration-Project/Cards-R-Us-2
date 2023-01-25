@@ -33,7 +33,7 @@ sessionController.isLoggedIn = (req, res, next) => {
       });
 
     User.findOne({ _id: records.userId }, (err, user) => {
-      if (err)
+      if (!user)
         return next({
           log: `sessionController.isLoggedIn: ${err}`,
           status: 500,

@@ -14,9 +14,9 @@ router.post(
   }
 );
 //POST to logout
-router.post('/logout', (req, res) => {
-  res.json('hit');
+router.get('/logout', (req, res) => {
   res.clearCookie('SSID');
+  res.json('session ended, you are logged out');
 });
 
 // '/signup' Endpoint

@@ -214,13 +214,10 @@ const GalleryPage = () => {
               <Button
                 onClick={() => {
                   window.location.href = '/';
-                  // fetch('locahost:8080/api/auth/logout', {
-                  //     method: 'GET',
-                  //     credentials: 'include'
-                  //   })
-                  //   .then(response => {
-                  //     console.log(response);
-                  //   });
+                  fetch('/api/auth/logout')
+                    .then(response => {
+                      console.log(response);
+                    });
                 }}
                 variant='soft'>
                 Logout
@@ -248,7 +245,7 @@ const GalleryPage = () => {
         {/* User/expand and minify sidebar */}
         <div className='User'>
           <Avatar alt='Placeholder' src={user?.avatar ?? Placeholder} />
-          <h2>{user?.username ?? 'HidInKyu'}</h2>
+          <h2>{user?.email.split('@')[0] ?? 'HidInKyu'}</h2>
           <IconButton
             variant='plain'
             onClick={() => setDisplaySideBar(!displaySideBar)}>
@@ -280,7 +277,7 @@ const GalleryPage = () => {
           </div>
           <div className='SecondaryControls'>
             {!displaySideBar ? (
-              <Button onClick={() => {}} variant='soft'>
+              <Button onClick={() => { }} variant='soft'>
                 Logout
               </Button>
             ) : null}
