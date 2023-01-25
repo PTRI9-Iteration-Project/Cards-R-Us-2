@@ -68,7 +68,7 @@ const CreateImg = ({
         onClick={(e) => {
           setSelectedImage(e.target.src);
         }}
-        src={el.url}
+        src={`data:image/png;base64,${el.b64_json}`}
       />
     </div>
   ));
@@ -140,7 +140,7 @@ const CreatePrompt = ({
         onClick={(e) => {
           setSelectedImage(e.target.src);
         }}
-        src={el.url}
+        src={`data:image/png;base64,${el.b64_json}`}
       />
     </div>
   ));
@@ -217,7 +217,6 @@ const CreateCard = () => {
   const { isLoggedIn } = useLoginState();
 
   if (error) return new Error('Something went wrong.');
-  console.log(selectedMessage);
 
   const handleNext = () => {
     if (createCardState.currentStep >= steps.length - 1) {
@@ -232,6 +231,7 @@ const CreateCard = () => {
         }),
       })
         .then((d) => {
+          console.log('response d on line 234', d)
           if (d.status === 401) window.location.href = '/login';
           if (d.status !== 200) {
             setError(true);
@@ -239,6 +239,7 @@ const CreateCard = () => {
           window.location.href = '/cards';
         })
         .catch((e) => {
+          console.log('error caught in line 243 in the fetch request on createcardpage')
           setError(true);
         });
 
