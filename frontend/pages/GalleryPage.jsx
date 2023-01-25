@@ -294,7 +294,6 @@ const GalleryPage = () => {
                 key={i}
                 cardId={card.cardId}
                 image={card.imageUrl}
-                // image={`data:image/jpg;base64,${card.imageUrl}`}
                 message={card.message}
                 deleteFunction={handleCardDelete}
               />
