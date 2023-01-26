@@ -14,8 +14,10 @@ const openaiController = {
         prompt: userPrompt,
         n: 4,
         size: '1024x1024',
+        response_format: "b64_json",
       });
-      console.log('response object: ', response.data);
+      //response.data = [{b64_json : 'string'}},{},{},{}]
+      // console.log('response object: ', response.data);
       res.locals.image = response.data;
     } catch (error) {
       if (error.response) {
