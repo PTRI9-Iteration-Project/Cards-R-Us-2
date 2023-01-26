@@ -17,7 +17,7 @@ function UpLoad() {
   };
 
   const setCroppedImageFor = (id, crop, zoom, aspect, croppedImageUrl) => {
-    const newImage = { ...image, croppedImageUrl, crop, zoom, aspect};
+    const newImage = { ...image, croppedImageUrl, crop, zoom, aspect };
     setImage(newImage);
     setSelectedImage(null);
   };
@@ -27,7 +27,8 @@ function UpLoad() {
   };
 
   return (
-    <div className='Upload'>
+    <div className='CreateCard'>
+      <BG className='background' />
       {selectedImage ? (
         <ImageCrop
           id={selectedImage.id}
@@ -40,7 +41,7 @@ function UpLoad() {
           resetImage={resetImage}
         />
       ) : null}
-      {/* <BG className='background' /> */}
+
       {/* Displays the current step */}
       {/* <div>upload</div> */}
       {/* <input type='file' name='myImage' /> */}
