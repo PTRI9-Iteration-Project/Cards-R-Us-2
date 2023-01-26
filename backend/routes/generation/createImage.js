@@ -6,4 +6,11 @@ router.post('/create', openaiController.createImage, (req, res) => {
   res.status(200).json(res.locals.image);
 });
 
+router.post(
+  '/createVariation',
+  openaiController.createImageVariation,
+  (req, res) => {
+    res.status(200).json(res.locals.image);
+  }
+);
 module.exports = router;

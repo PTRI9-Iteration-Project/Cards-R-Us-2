@@ -82,7 +82,7 @@ const CreateImg = ({
             type='search'
             id='ai-img-bar'
             value={userPrompt}
-            placeholder=' generate an image for your card... '
+            placeholder='    Describe your card ...'
             onChange={(e) => setUserPrompt(e.target.value)}
           />
           <button>
@@ -231,7 +231,7 @@ const CreateCard = () => {
         }),
       })
         .then((d) => {
-          console.log('response d on line 234', d)
+          console.log('response d on line 234', d);
           if (d.status === 401) window.location.href = '/login';
           if (d.status !== 200) {
             setError(true);
@@ -239,7 +239,9 @@ const CreateCard = () => {
           window.location.href = '/cards';
         })
         .catch((e) => {
-          console.log('error caught in line 243 in the fetch request on createcardpage')
+          console.log(
+            'error caught in line 243 in the fetch request on createcardpage'
+          );
           setError(true);
         });
 

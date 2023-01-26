@@ -10,9 +10,11 @@
     animation: pan 5s infinite alternate ease-in-out;
     bottom: 3em;
   }
+
   .Next {
     display: flex;
     margin-top: 20px;
+
     * {
       margin: auto;
     }
@@ -31,6 +33,7 @@
     height: 10vh;
     margin: auto;
     z-index: 1;
+
     .askAi-img {
       display: flex;
       flex-direction: row;
@@ -40,7 +43,7 @@
       width: 20vw;
       height: 7vh;
       border-radius: 4em;
-      border: 2px solid $secondary;
+      border: 4px solid $text-color;
 
       button {
         .fa-magnifying-glass {
@@ -51,21 +54,23 @@
 
       input {
         all: unset;
+        width:16em;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
           Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
           sans-serif;
         color: $primary;
-        animation: typewriter 2s steps(44) 1s 0.7 normal both;
+        // animation: typewriter 2s steps(44) 1s 0.7 normal both;
       }
 
-      @keyframes typewriter {
-        from {
-          width: 0;
-        }
-        to {
-          width: 24em;
-        }
-      }
+      // @keyframes typewriter {
+      //   from {
+      //     width: 0;
+      //   }
+
+      //   to {
+      //     width: 24em;
+      //   }
+      // }
     }
 
     button {
@@ -73,10 +78,12 @@
       border: none;
     }
   }
+
   .imgDisplay {
     z-index: 1;
     display: flex;
     justify-content: center;
+
     .img-result {
       display: inline-grid;
       grid-template-columns: auto auto;
@@ -86,24 +93,29 @@
       border: 4px solid $text-color;
       border-radius: 10px;
       background-color: rgba(255, 255, 255, 0.501);
+
       .loading {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         img {
           padding-left: 3em;
           width: 100%;
           animation: fadeIn 2s linear, load 2s infinite alternate;
         }
+
         h1 {
           animation: fadeIn 400ms linear, load 2s infinite alternate;
         }
+
         @keyframes fadeIn {
           0% {
             opacity: 0;
           }
         }
+
         @keyframes load {
           100% {
             text-shadow: 0px 0px 18px rgba(5, 255, 101, 0.881);
@@ -111,11 +123,13 @@
           }
         }
       }
+
       .image {
         border-radius: 1em;
         margin: 10px;
         width: 95%;
         transition: 1s ease;
+
         &:hover {
           -webkit-transform: scale(1.06);
           -ms-transform: scale(1.06);
@@ -126,7 +140,7 @@
 
         &:focus {
           border-radius: 50%;
-          border: 3px solid blue;
+          border: 6px solid blue;
         }
       }
     }
@@ -138,6 +152,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+
   .background {
     z-index: -1;
     scale: 1.2;
@@ -171,9 +186,11 @@
         border: none;
         cursor: pointer;
       }
+
       #color::-webkit-color-swatch {
         border-radius: 50%;
       }
+
       #color::-moz-color-swatch {
         border-radius: 50%;
       }
@@ -229,8 +246,10 @@
     right: 0;
     height: 100vh;
     padding: 0 2em;
+
     .image {
       width: 10vw;
+
       img {
         width: inherit;
         border-radius: 1em;
