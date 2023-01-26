@@ -1,0 +1,54 @@
+.Upload {
+  .imageCard {
+    text-align: center;
+  }
+
+  .imageCard img {
+    width: 600px;
+  }
+
+  .backdrop {
+    position: fixed;
+    background-color: black;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .crop-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 80px;
+  }
+
+  .controls {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+  }
+
+  .controls-upper-area {
+    text-align: center;
+  }
+
+  .slider {
+    width: 50%;
+  }
+
+  .button-area {
+    text-align: center;
+    margin-top: 20px;
+  }
+  button {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid yellow;
+    font-size: 20px;
+  }
+}
