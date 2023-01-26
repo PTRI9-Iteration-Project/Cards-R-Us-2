@@ -1,25 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BG from '../images/bg.svg';
-import Button from '@mui/joy/Button';
-import loading from '../images/loading.gif';
+import ImageCrop from './ImageCrop';
+
+const initData = {
+  id: 1,
+  imageUrl: 'https://i.imgur.com/k170R.png',
+  croppedImageUrl: null,
+};
 
 function UpLoad() {
+  const [image, setImage] = useState(initData);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const onCancel = () => {
+    setSelectedImage(null);
+  };
+
+  const setCroppedImageFor = (id, crop, zoom, aspect, croppedImageUrl) => {
+    const newImage = { ...image, croppedImageUrl, crop, zoom, aspect };
+    setImage(newImage);
+    setSelectedImage(null);
+  };
+
+  const resetImage = (id) => {
+    setCroppedImageFor(id);
+  };
+
   return (
     <div className='CreateCard'>
-      <div className='CreateImg'>
-        <BG className='background' />
-        <div> empty space</div>
-        <div className='imgDisplay'>
-          <div className='img-result'>
-            <div className='loading'>
-              <img src={loading} />
-              <h1>loading</h1>
-            </div>
-          </div>
-        </div>
-        <div className='Next'>
-          <Button variant='soft'>upload</Button>
-        </div>
+      <BG className='background' />
+      {selectedImage ? (
+        <ImageCrop
+          id={selectedImage.id}
+          imageUrl={selectedImage.imageUrl}
+          cropInit={selectedImage.crop}
+          zoomInit={selectedImage.zoom}
+          aspectInit={selectedImage.aspect}
+          onCancel={onCancel}
+          setCroppedImageFor={setCroppedImageFor}
+          resetImage={resetImage}
+        />
+      ) : null}
+
+      {/* Displays the current step */}
+      {/* <div>upload</div> */}
+      {/* <input type='file' name='myImage' /> */}
+      <div className='imageCard'>
+        <img
+          src={image.croppedImageUrl ? image.croppedImageUrl : image.imageUrl}
+          alt=''
+          onClick={() => setSelectedImage(image)}
+        />
       </div>
     </div>
   );

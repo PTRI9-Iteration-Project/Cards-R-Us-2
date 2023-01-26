@@ -5,16 +5,15 @@ import Background from '../images/bg.svg';
 import Logo from '../images/logo.png';
 
 const SignUp = () => {
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const email = e.target.querySelector('#email').value;
     const password = e.target.querySelector('#password').value;
 
-    const info = { email, password};
+    const info = { email, password };
 
     console.log(info);
 
@@ -25,12 +24,12 @@ const SignUp = () => {
       },
       body: JSON.stringify(info),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-      console.log('Successfully created account');
-      navigate('/login');
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log('Successfully created account');
+        navigate('/login');
+      });
   };
 
   return (
@@ -53,7 +52,7 @@ const SignUp = () => {
           <input type='password' name='password' />
           <br className='noSelect' />
           <label>Confirm Password:</label>
-          <input type='password' name='password' id='password'/>
+          <input type='password' name='password' id='password' />
           <br className='noSelect' />
         </div>
 
