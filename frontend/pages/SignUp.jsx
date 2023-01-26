@@ -8,10 +8,6 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const navToLogin = () => {
-    navigate('/login')
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -33,6 +29,7 @@ const SignUp = () => {
     .then((data) => {
       console.log(data)
       console.log('Successfully created account');
+      navigate('/login');
     });
   };
 
@@ -61,10 +58,8 @@ const SignUp = () => {
         </div>
 
         <div className='buttons noSelect'>
-          <button type='submit' className='button' onClick={navToLogin}>
-          
+          <button type='submit' className='button'>
             Create Account
-  
           </button>
         </div>
         <br className='noSelect' />
