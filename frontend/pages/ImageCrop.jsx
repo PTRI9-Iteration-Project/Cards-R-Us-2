@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-// import BG from '../images/bg.svg';
+import BG from '../images/bg.svg';
 import Cropper from 'react-easy-crop';
 import getCroppedImg from './croppedImage';
 
 const aspectRatios = [
-  { value: 4 / 3, text: '4/3' },
-  { value: 16 / 9, text: '16/9' },
-  { value: 1 / 2, text: '1/2' },
+  { value: 1 / 1, text: '1/1' }
 ];
 
 function ImageCrop({
@@ -64,7 +62,7 @@ function ImageCrop({
   return (
     <div>
       {/* <BG className='background' /> */}
-      <div className="backdrop"></div>
+      {/* <div className="backdrop"></div> */}
       <div className='crop-container'>
         <Cropper
           image={imageUrl}
