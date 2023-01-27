@@ -1,4 +1,10 @@
 .Upload {
+
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: $primary;
+
   .imageCard {
     text-align: center;
   }
