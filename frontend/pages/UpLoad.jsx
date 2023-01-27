@@ -27,7 +27,7 @@ function UpLoad() {
   };
 
   return (
-    <div className='CreateCard'>
+    <div className='Upload'>
       <BG className='background' />
       {selectedImage ? (
         <ImageCrop

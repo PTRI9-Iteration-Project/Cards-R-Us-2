@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import BG from '../images/bg.svg';
 import Cropper from 'react-easy-crop';
 import getCroppedImg from './croppedImage';
+import Button from '@mui/joy/Button';
 
 const aspectRatios = [
   { value: 4 / 3, text: '4/3' },
@@ -17,7 +18,7 @@ function ImageCrop({
   aspectInit,
   onCancel,
   setCroppedImageFor,
-  resetImage
+  resetImage,
 }) {
   if (zoomInit == null) {
     zoomInit = 1;
@@ -64,7 +65,7 @@ function ImageCrop({
   return (
     <div>
       {/* <BG className='background' /> */}
-      <div className="backdrop"></div>
+      <div className='backdrop'></div>
       <div className='crop-container'>
         <Cropper
           image={imageUrl}
@@ -77,9 +78,9 @@ function ImageCrop({
         />
       </div>
       <div className='controls'>
-      <div className="controls-upper-area">
+        <div className='controls-upper-area'>
           <input
-            type="range"
+            type='range'
             min={1}
             max={3}
             step={0.1}
@@ -87,24 +88,28 @@ function ImageCrop({
             onInput={(e) => {
               onZoomChange(e.target.value);
             }}
-            className="slider"
-          ></input>
+            className='slider'></input>
           <select onChange={onAspectChange}>
             {aspectRatios.map((ratio) => (
               <option
                 key={ratio.text}
                 // value={ratio.value}
-                value={ratio.value === aspect.value}
-              >
+                value={ratio.value === aspect.value}>
                 {ratio.text}
               </option>
             ))}
           </select>
         </div>
         <div className='button-area'>
-          <button onClick={onCancel}>Cancel</button>
-          <button onClick={onResetImage}>Reset</button>
-          <button onClick={onCrop}>Crop</button>
+          <Button variant='soft' onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button variant='soft' onClick={onResetImage}>
+            Reset
+          </Button>
+          <Button variant='soft' onClick={onCrop}>
+            Crop
+          </Button>
         </div>
       </div>
     </div>
