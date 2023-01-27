@@ -33,30 +33,32 @@ function UpLoad() {
   }
 
   return (
-    <div className='Upload'>
+    <div className='CreateCard'>
       <BG className='background' />
-        {selectedImage ? (
-          <ImageCrop
-            id={selectedImage.id}
-            imageUrl={selectedImage.imageUrl}
-            cropInit={selectedImage.crop}
-            zoomInit={selectedImage.zoom}
-            aspectInit={selectedImage.aspect}
-            onCancel={onCancel}
-            setCroppedImageFor={setCroppedImageFor}
-            resetImage={resetImage}
-          />
-        ) : null}
+      {selectedImage ? (
+        <ImageCrop
+          id={selectedImage.id}
+          imageUrl={selectedImage.imageUrl}
+          cropInit={selectedImage.crop}
+          zoomInit={selectedImage.zoom}
+          aspectInit={selectedImage.aspect}
+          onCancel={onCancel}
+          setCroppedImageFor={setCroppedImageFor}
+          resetImage={resetImage}
+        />
+      ) : null}
         <div>upload</div>
-        <input type='file' accept='image/*' name='myImage' onChange={onImageUpload}/> 
-
-        <div className='imageCard'>
-          <img
-            src={image.croppedImageUrl ? image.croppedImageUrl : image.imageUrl}
-            alt=''
-            onClick={() => setSelectedImage(image)}
-          />
-        </div>
+        <input type='file' accept='image/*' name='myImage' onChange={onImageUpload}/>
+      {/* Displays the current step */}
+      {/* <div>upload</div> */}
+      {/* <input type='file' name='myImage' /> */}
+      <div className='imageCard'>
+        <img
+          src={image.croppedImageUrl ? image.croppedImageUrl : image.imageUrl}
+          alt=''
+          onClick={() => setSelectedImage(image)}
+        />
+      </div>
     </div>
   );
 }
