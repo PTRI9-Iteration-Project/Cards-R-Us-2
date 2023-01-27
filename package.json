@@ -40,6 +40,7 @@
     "mongoose": "^6.8.2",
     "mongoose-findorcreate": "^3.0.0",
     "openai": "^3.1.0",
+    "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "qrcode": "^1.5.1",
     "react": "^18.2.0",

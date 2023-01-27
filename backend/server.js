@@ -30,6 +30,9 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
     return cb(null, {
@@ -66,22 +69,28 @@ mongoose
   })
   .catch(console.error);
 
-const userSchema = new mongoose.Schema({
+const googleUserSchema = new mongoose.Schema({
   email: String,
   password: String,
+  googleId: String,
 });
 
-userSchema.plugin(findOrCreate);
+googleUserSchema.plugin(findOrCreate);
+
+const GoogleUser = new mongoose.model('GoogleUser', googleUserSchema);
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://www.example.com/auth/google/callback',
+      clientID: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+      callbackURL: 'http://localhost:8080/api/oauth/google/cards',
+      userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      console.log(`profile: ${JSON.stringify(profile)}`);
+
+      GoogleUser.findOrCreate({ googleId: profile.id }, function (err, user) {
         return cb(err, user);
       });
     }
