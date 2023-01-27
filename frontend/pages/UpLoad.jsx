@@ -26,6 +26,12 @@ function UpLoad() {
     setCroppedImageFor(id);
   };
 
+  const onImageUpload = (event) => {
+    const uploadedImage = {...image}
+    uploadedImage.imageUrl = URL.createObjectURL(event.target.files[0])
+    setImage(uploadedImage)
+  }
+
   return (
     <div className='CreateCard'>
       <BG className='background' />
@@ -41,7 +47,8 @@ function UpLoad() {
           resetImage={resetImage}
         />
       ) : null}
-
+        <div>upload</div>
+        <input type='file' accept='image/*' name='myImage' onChange={onImageUpload}/>
       {/* Displays the current step */}
       {/* <div>upload</div> */}
       {/* <input type='file' name='myImage' /> */}
