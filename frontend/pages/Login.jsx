@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.querySelector('#email').value;
     const password = e.target.querySelector('#password').value;
-    const info = { email, password};
+    const info = { email, password };
 
     fetch('/api/auth/login', {
       method: 'POST',
@@ -21,39 +21,40 @@ const Login = () => {
       },
       body: JSON.stringify(info),
     })
-    .then((res) => {
-      return res.json();
-    })
-    .then(async (data) => {
-      if(data.err) {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 2000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'error',
-          title: 'Incorrect login credentials'
-        })
-        return;
-      }
-      console.log('data:', data)
-      // let userData = updateLogin(data);
-      let userData = await updateLogin(data);
-      console.log('userData', userData)
-      return userData;
-    })
-    .then((loginData) => {
-      statusUpdate
-      console.log('sweet:', loginData)
-    }).catch(err=> console.log('user not found:', err))
+      .then((res) => {
+        return res.json();
+      })
+      .then(async (data) => {
+        if (data.err) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Incorrect login credentials',
+          });
+          return;
+        }
+        console.log('data:', data);
+        // let userData = updateLogin(data);
+        let userData = await updateLogin(data);
+        console.log('userData', userData);
+        return userData;
+      })
+      .then((loginData) => {
+        statusUpdate;
+        console.log('sweet:', loginData);
+      })
+      .catch((err) => console.log('user not found:', err));
   };
 
   return (
@@ -70,7 +71,7 @@ const Login = () => {
       <Form onSubmit={handleLogin}>
         <div className='Inputs noSelect'>
           <label>Email:</label>
-          <input type='email' name='email' id='email'/>
+          <input type='email' name='email' id='email' />
           <br />
           <label>Password:</label>
           <input type='password' name='password' id='password' />
@@ -89,7 +90,7 @@ const Login = () => {
           Forget password?
         </Link>
         <div className='Icons'>
-          <a className='icon' href='#'>
+          <a className='icon' href='http://localhost:8080/api/oauth/google'>
             <i className='fa-brands fa-google'></i>
           </a>
           <a className='icon' href='http://localhost:8080/api/oauth/gh'>
