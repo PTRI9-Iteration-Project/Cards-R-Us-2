@@ -42,10 +42,11 @@ function UpLoad() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(initData),
+      body: JSON.stringify({image}),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setImage(data);
       });
   };

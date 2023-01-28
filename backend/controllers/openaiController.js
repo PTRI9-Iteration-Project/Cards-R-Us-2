@@ -37,19 +37,41 @@ const openaiController = {
   },
 
   async createImageVariation(req, res, next) {
-    const { imageUrl } = req.body;
+    const { image } = req.body;
 
-    console.log(imageUrl);
+    // console.log(image);
+    let imageData = image.croppedImageUrl;
+
+    function decodeBase64Image(dataString) {
+      var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+    
+      if (matches.length !== 3) {
+        return new Error('Invalid input string');
+      }
+    
+      response.type = matches[1];
+      response.data = new Buffer.from(matches[2], 'base64');
+    
+      return response;
+    }
+    
+    let imageBuffer = decodeBase64Image(imageData);
+    // console.log('type:', typeof(imageBuffer.data));
+    // console.log('response.data', imageBuffer.data)
+    let image64 = imageBuffer.data
+    // console.log(image64)
+
+    fs.writeFileSync('toAI.png', image64, {type: 'image/png'});
     try {
       const response = await openai.createImageVariation(
-        fs.createReadStream(imageUrl),
+        fs.createReadStream(`toAI.png`),
         1,
         '1024x1024',
-        'b64_json'
       );
-      //response.data = [{b64_json : 'string'}},{},{},{}]
       // console.log('response object: ', response.data);
-      res.locals.image = response.data.data[0].b64_json;
+      console.log(response.data)
+      res.locals.image = response.data
     } catch (error) {
       if (error.response) {
         console.log(error.response.status);
