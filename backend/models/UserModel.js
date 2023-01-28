@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const findOrCreate = require('mongoose-findorcreate');
 
 const SALT_WORK_FACTOR = 10;
 const bcrypt = require('bcrypt');
@@ -35,7 +36,14 @@ const userSchema = new Schema({
     required: false,
     default: [],
   },
+  googleId: {
+    type: String,
+    required: false,
+    default: '',
+  },
 });
+
+userSchema.plugin(findOrCreate);
 
 // // use it for hashing password before saving to database
 userSchema.pre('save', function (next) {

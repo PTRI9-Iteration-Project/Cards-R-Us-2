@@ -7,7 +7,7 @@ const { DB_URI } = process.env;
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const findOrCreate = require('mongoose-findorcreate');
+const User = require('./models/UserModel');
 
 const PORT = 3000;
 const app = express();
@@ -69,16 +69,6 @@ mongoose
   })
   .catch(console.error);
 
-const googleUserSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-  googleId: String,
-});
-
-googleUserSchema.plugin(findOrCreate);
-
-const GoogleUser = new mongoose.model('GoogleUser', googleUserSchema);
-
 passport.use(
   new GoogleStrategy(
     {
@@ -88,11 +78,19 @@ passport.use(
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
     function (accessToken, refreshToken, profile, cb) {
+      console.log(`accessToken: ${JSON.stringify(accessToken)}`);
       console.log(`profile: ${JSON.stringify(profile)}`);
 
-      GoogleUser.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+      User.findOrCreate(
+        {
+          email: profile.emails[0].value,
+          name: profile.displayName,
+          googleId: profile.id,
+        },
+        function (err, user) {
+          return cb(err, user);
+        }
+      );
     }
   )
 );

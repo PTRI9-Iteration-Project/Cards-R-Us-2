@@ -6,7 +6,7 @@ const oauth = require('../../controllers/oauth/oauthController');
 
 router.get(
   '/',
-  passport.authenticate('google', { scope: ['profile'] }),
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
   oauth.middleware.getUser,
   sessionController.startSession
 );
