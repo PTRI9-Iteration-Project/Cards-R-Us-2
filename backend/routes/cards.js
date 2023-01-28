@@ -35,6 +35,18 @@ router.post(
   }
 );
 
+//
+router.post(
+  '/variate',
+  sessionController.isLoggedIn,
+  cardsController.variateCard,
+  cardsController.getCards,
+  (req, res) => {
+    console.log('CREATE REQUEST for cardsController.createCard');
+    return res.status(200).json(res.locals.cards);
+  }
+);
+
 // DELETE
 router.delete(
   '/',

@@ -24,7 +24,7 @@
   }
 
   .imageCard img {
-    margin-top: 7em;
+    margin-top: 11em;
     width: 600px;
   }
 
@@ -38,7 +38,7 @@
   }
 
   .crop-container {
-    z-index: 2;
+    z-index: 5;
     position: fixed;
     top: 0;
     left: 0;
@@ -47,6 +47,7 @@
   }
 
   .controls {
+    z-index: 5;
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -87,4 +88,15 @@ input[type='file'] {
   padding: 6px 12px;
   cursor: pointer;
   color: white;
+}
+
+.alterButtons {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5em;
+  margin-bottom: 10px;
+  width: auto;
+  display: inline-block;
 }
