@@ -93,6 +93,30 @@ const cardsController = {
     }
   },
 
+  async variateCard(req, res, next) {
+    const { imageUrl } = req.body;
+    try {
+      if (!imageUrl) return new Error('No image url or message provided');
+      const newCard = await Card.create({
+        author: res.locals.user.id,
+        image: imageUrl,
+      });
+      const { _id } = newCard;
+      res.locals.user.gallery.push(_id);
+      await User.findOneAndUpdate(
+        { _id: res.locals.user._id },
+        { gallery: res.locals.user.gallery }
+      );
+      return next();
+    } catch (e) {
+      return next({
+        log: 'Error creating card in cardController',
+        status: 409,
+        message: { err: e.message },
+      });
+    }
+  },
+
   async deleteCard(req, res, next) {
     // res.send('Deleting card...');
     //res.locals.user;
