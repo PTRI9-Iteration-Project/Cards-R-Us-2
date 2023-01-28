@@ -8,6 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('./models/UserModel');
+const Session = require('./models/sessionsModel');
 
 const PORT = 3000;
 const app = express();
@@ -33,31 +34,31 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (user, cb) {
-  process.nextTick(function () {
-    return cb(null, {
-      id: user.id,
-      username: user.username,
-      picture: user.picture,
-    });
-  });
-});
-
-passport.deserializeUser(function (user, cb) {
-  process.nextTick(function () {
-    return cb(null, user);
-  });
-});
-
-// passport.serializeUser(function (user, done) {
-//   done(null, user.id);
-// });
-
-// passport.deserializeUser(function (id, done) {
-//   User.findById(id, function (err, user) {
-//     done(err, user);
+// passport.serializeUser(function (user, cb) {
+//   process.nextTick(function () {
+//     return cb(null, {
+//       id: user.id,
+//       username: user.username,
+//       picture: user.picture,
+//     });
 //   });
 // });
+
+// passport.deserializeUser(function (user, cb) {
+//   process.nextTick(function () {
+//     return cb(null, user);
+//   });
+// });
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 mongoose.set('strictQuery', false);
 
@@ -85,9 +86,20 @@ passport.use(
         {
           email: profile.emails[0].value,
           name: profile.displayName,
-          googleId: profile.id,
         },
         function (err, user) {
+          console.log(`user: ${user}`);
+
+          Session.findOrCreate(
+            {
+              userId: user._id,
+            },
+            function (err, session) {
+              console.log(`session: ${session}`);
+              return cb(err, session);
+            }
+          );
+
           return cb(err, user);
         }
       );

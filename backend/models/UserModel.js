@@ -36,11 +36,6 @@ const userSchema = new Schema({
     required: false,
     default: [],
   },
-  googleId: {
-    type: String,
-    required: false,
-    default: '',
-  },
 });
 
 userSchema.plugin(findOrCreate);

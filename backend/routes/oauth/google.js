@@ -6,16 +6,19 @@ const oauth = require('../../controllers/oauth/oauthController');
 
 router.get(
   '/',
-  passport.authenticate('google', { scope: ['profile', 'email'] }),
-  oauth.middleware.getUser,
-  sessionController.startSession
+  passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 router.get(
   '/cards',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    // Successful authentication, redirect home.
+    res.cookie('SSID', '63d48492dd3409f79880af5f', {
+      maxAge: 1800000, // 30 mins
+      httpOnly: true,
+    });
+
+    // Successful authentication, redirect cards
     res.redirect('/cards/');
   }
 );
