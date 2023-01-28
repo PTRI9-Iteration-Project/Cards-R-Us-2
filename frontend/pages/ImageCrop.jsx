@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-// import BG from '../images/bg.svg';
+import BG from '../images/bg.svg';
 import Cropper from 'react-easy-crop';
 import getCroppedImg from './croppedImage';
 import Button from '@mui/joy/Button';
 
-const aspectRatios = [
-  { value: 4 / 3, text: '4/3' },
-  { value: 16 / 9, text: '16/9' },
-  { value: 1 / 2, text: '1/2' },
-];
+const aspectRatios = [{ value: 1 / 1, text: '1/1' }];
 
 function ImageCrop({
   id,

@@ -24,7 +24,7 @@
   }
 
   .imageCard img {
-    margin-top: 5em;
+    margin-top: 7em;
     width: 600px;
   }
 
@@ -38,6 +38,7 @@
   }
 
   .crop-container {
+    z-index: 2;
     position: fixed;
     top: 0;
     left: 0;
@@ -68,4 +69,22 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+}
+
+input[type='file'] {
+  display: none;
+}
+.custom-file {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2em;
+  margin-bottom: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  width: 4em;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: white;
 }
